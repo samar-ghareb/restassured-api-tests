@@ -79,7 +79,7 @@ public class ApiTests {
             given().baseUri("https://6885cfeff52d34140f6a9e3b.mockapi.io/api/v1")
                     .when().get("users")
                     .then().log().ifValidationFails()
-                    .body("[0].name", Matchers.equalTo("Pattiyy Hegmann"));
+                    .body("[0].name", Matchers.equalTo("Patti Hegmann"));
 
 
 
