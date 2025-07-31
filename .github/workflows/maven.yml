@@ -31,4 +31,11 @@ jobs:
           ping -c 4 todo.qacart.com || true
 
       - name: Run Maven Tests
-        run: mvn clean test -B
+        run: mvn clean test -e -X
+
+      - name: Upload Surefire Reports
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: surefire-reports
+          path: target/surefire-reports
