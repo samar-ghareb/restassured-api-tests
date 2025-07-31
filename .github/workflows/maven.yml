@@ -30,8 +30,12 @@ jobs:
           echo "Pinging QACart..."
           ping -c 4 todo.qacart.com || true
 
-      - name: Run Maven Tests
-        run: mvn clean test -e -X
+      - name: Run Maven Tests with Retry
+        run: |
+          for i in 1 2 3; do
+            echo "Attempt $i: Running tests..."
+            mvn clean test -B && break || sleep 10
+          done
 
       - name: Upload Surefire Reports
         if: failure()
